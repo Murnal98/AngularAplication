@@ -1,0 +1,28 @@
+.example-container {
+  width: 20000px;
+  height: 4000px;
+  margin: 50px;
+  border: 1px solid rgb(109, 88, 56);
+}
+.example-spacer {
+
+  flex: 1 1 20px;
+
+}
+.mat-toolbar {
+ background-color: rgb(112, 91, 45);
+ text-shadow: 2px 2px 4px #000000;
+}
+.mat-nav-list {
+  font-style: italic;
+  font-size: large;
+  text-shadow: 2px 2px 4px #5f5217;
+
+  }
+.mat-sidenav{
+  text-shadow: 2px 2px 4px #000000;
+  background-color: #8a8586;
+}
+
+
+
