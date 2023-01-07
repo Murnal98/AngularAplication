@@ -1,0 +1,132 @@
+
+<h1>Employee-Attendance</h1>
+<div style="padding: 2%;">
+   <form [formGroup]="empFormGroup">
+
+
+
+    <td>Date</td>
+    <td>
+      <mat-form-field>
+        <input matInput [max]="maxDate" [matDatepicker]="picker" [(ngModel)]="filterDate" formControlName="date"
+          id="date">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-error *ngIf="hasError('date','required')">Date is required</mat-error>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </td>&nbsp;
+
+
+
+    <td> Company</td>
+    <td>
+      <mat-form-field floatLabel="never">
+        <mat-select id="comname" formControlName="comname" [(ngModel)]="comId">
+          <mat-option *ngFor="let company of company" [value]="company.companyId">{{company.companyName}}</mat-option>
+        </mat-select>
+        <mat-error *ngIf="hasError('comname', 'required')">CompanyName is required</mat-error>
+      </mat-form-field>
+    </td>
+  </form>
+
+
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+
+  <button mat-raised-button (click)="loadAttendance()">Load</button>&nbsp;&nbsp;
+  <button mat-raised-button (click)="SaveEmployeeAttendance()" [disabled]="SaveDisabled">Save</button>
+
+
+
+<div *ngIf="showTable">
+  <div style="padding: 2%;">
+    <div class="example-container mat-elevation-z8">
+
+
+      <div>
+        <mat-form-field fxFlex="40%" style="width: 20%;">
+          <input matInput type="text" (change)="doFilter($any($event.target).value);" placeholder="Filter">
+        </mat-form-field>
+      </div>
+
+
+      <mat-table #table [dataSource]="dataSource" >
+        <ng-container matColumnDef="employeeID">
+          <mat-header-cell *matHeaderCellDef> EmployeeId </mat-header-cell>
+          <mat-select id="empId" [(ngModel)]="empAtt.employeeID">
+            <mat-cell *matCellDef="let element"> {{element.employeeID}} </mat-cell>
+          </mat-select>
+        </ng-container>
+
+
+
+
+        <ng-container matColumnDef="employeeName">
+          <mat-header-cell *matHeaderCellDef> EmployeeName </mat-header-cell>
+          <mat-select id="empname" [(ngModel)]="empAtt.employeeName">
+            <mat-cell *matCellDef="let element"> {{element.employeeName}} </mat-cell>
+          </mat-select>
+        </ng-container>
+
+
+
+
+        <ng-container matColumnDef="clockDate">
+          <mat-header-cell *matHeaderCellDef> Date </mat-header-cell>
+          <mat-select id="clockdate" [(ngModel)]="empAtt.clockDate">
+            <mat-cell *matCellDef="let element"> {{element.clockDate|date}} </mat-cell>
+          </mat-select>
+        </ng-container>
+
+
+        <!-- <form [formGroup]="empFormGroup"> -->
+          <ng-container matColumnDef="timein">
+          <mat-header-cell *matHeaderCellDef> TimeIn </mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            <!-- <mat-form-field floatLabel="never"> -->
+              <input  id="timein" placeholder="TimeIn" [(ngModel)]="element.timein" type="time">
+            <!-- </mat-form-field> -->
+            <ngx-mat-timepicker #time></ngx-mat-timepicker>
+          </mat-cell>
+        </ng-container>
+
+
+
+        <ng-container matColumnDef="timeout">
+          <mat-header-cell *matHeaderCellDef> TimeOut </mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            <!-- <mat-form-field floatLabel="never"> -->
+              <input  id="timeout" placeholder="TimeOut" [(ngModel)]="element.timeout" type="time">
+            <!-- </mat-form-field> -->
+            <!-- <ngx-mat-timepicker #timeOutpicker></ngx-mat-timepicker> -->
+          </mat-cell>
+        </ng-container>
+
+
+
+        <ng-container matColumnDef="remarks">
+          <mat-header-cell *matHeaderCellDef> Remarks </mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            <mat-form-field floatLabel="never">
+              <input matInput id="remarks" placeholder="Remarks" [(ngModel)]="element.remarks">
+            </mat-form-field>
+          </mat-cell>
+        </ng-container>
+      <!-- </form> -->
+
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </mat-table>
+
+
+
+      <mat-paginator [pageSize]="5" [pageSizeOptions]="[5, 7, 9, 11,13 ]">
+      </mat-paginator>
+
+    </div>
+    </div>
+  </div>
+</div>
+

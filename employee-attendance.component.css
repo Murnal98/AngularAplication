@@ -1,0 +1,30 @@
+h1{
+  text-align: center;
+  text-shadow: 2px 2px 5px rgb(105, 80, 32);
+
+}
+.mat-header-cell{
+  background-color: rgb(6, 95, 95);
+  color: white;
+  font-size: large;
+  font-style: normal;
+  text-shadow: 2px 2px 4px #000000;
+}
+button{
+  background-color: rgb(6, 95, 95);
+  color: white;
+  font-size: small;
+  font-style: normal;
+  margin-left: auto;
+ margin-left: 2px;
+}
+
+.mat-table{
+  border: 2px solid rgb(102, 81, 25);
+}
+td{
+
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+
